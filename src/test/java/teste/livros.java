@@ -46,10 +46,7 @@ public class livros {
 		System.setProperty("webdriver.chrome.driver", "/home/user/chromedriver");
 		driverame = new ChromeDriver();
 		driverame.get("https://www.americanas.com.br/");
-		
-		//WebElement busca = driverame.findElement(By.xpath("//*[@id=\"h_search-input\"]"));
-		//busca.click();
-		
+				
 		WebElement busca2 = driverame.findElement(By.xpath("//*[@id=\"h_search-input\"]"));
 		busca2.click();
 		busca2.sendKeys(isbn);
