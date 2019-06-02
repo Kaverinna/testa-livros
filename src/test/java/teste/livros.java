@@ -37,7 +37,9 @@ public class livros {
 
 		WebElement livro1 = driversub.findElement(By.xpath("//*[@id=\"info-section\"]/div[2]/section/div/div[3]/table/tbody/tr[4]/td[2]/span"));
 		String isbn = livro1.getText(); 
-		System.out.println(isbn);
+		
+		WebElement autor = driversub.findElement(By.xpath("/html/body/div[4]/div/div/section/div/div[2]/div[2]/section/div[3]/div[1]/div/div/a/span"));
+		String nome = autor.getText(); 
 		
 		driversub.close();
 				
@@ -46,11 +48,26 @@ public class livros {
 		System.setProperty("webdriver.chrome.driver", "/home/user/chromedriver");
 		driverame = new ChromeDriver();
 		driverame.get("https://www.americanas.com.br/");
-				
+		
 		WebElement busca2 = driverame.findElement(By.xpath("//*[@id=\"h_search-input\"]"));
 		busca2.click();
 		busca2.sendKeys(isbn);
 		busca2.sendKeys(Keys.RETURN);
+				
+		WebElement livro2 = driverame.findElement(By.xpath("//*[@id=\"content-middle\"]/div[5]/div/div/div/div[1]/div/div/div[2]/a/section/div[1]/div/div/picture/img"));
+		livro2.click();
+		
+		WebElement autor2 = driverame.findElement(By.xpath("//*[@id=\"info-section\"]/div[2]/section/div/div[3]/table/tbody/tr[13]/td[2]/span"));
+		String nome2 = autor2.getText();
+		
+		
+		if (!nome.equals(nome2)){
+			System.out.println("Erro: Autores diferentes");
+			driverame.close();
+			fail("Erro: Autores diferentes");
+			
+		}
+		
 		driverame.close();
 		
 		Thread.sleep(5000);
@@ -64,8 +81,18 @@ public class livros {
 		procura.sendKeys(isbn);
 		procura.sendKeys(Keys.RETURN);
 		
+		WebElement livro3 = driverama.findElement(By.xpath("//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[1]/div[1]/div/div/div/div[2]/div[1]/div/div/span/a/div/img"));
+		livro3.click();
+		
+		WebElement autor3 = driverama.findElement(By.xpath("/html/body/div[2]/div[2]/div[4]/div[5]/div[1]/div[2]/span[1]/a"));
+		String nome3 = autor3.getText(); 
 
-		fail("Not yet implemented");
+		if (!nome.equals(nome3)){
+			System.out.println("Erro: Autores diferentes");
+			driverama.close();
+			fail("Erro: autores diferentes");
+		}
+	
 	}
 
 	@AfterClass
